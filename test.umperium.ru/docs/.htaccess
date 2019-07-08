@@ -1,0 +1,20 @@
+AddDefaultCharset utf-8
+RewriteEngine On  
+
+RewriteCond %{REQUEST_FILENAME} !-f  
+RewriteCond %{REQUEST_FILENAME} !-d  
+
+RewriteRule . index.php [L]
+
+php_value upload_max_filesize 40M
+php_value post_max_size 40M
+php_value max_execution_time 5000
+php_value max_input_time 5000
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+</IfModule>
+
